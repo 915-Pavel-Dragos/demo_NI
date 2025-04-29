@@ -42,7 +42,7 @@ public class GameServiceImpl implements GameService{
         Game game = gameRepo.findById(Id).orElseThrow();
         game.setName(gameDTO.name());
         game.setDatePublished(gameDTO.date_published());
-        game.setCopiesSold(gameDTO.copies_Sold());
+        game.setCopiesSold(gameDTO.copies_sold());
         game.setAchivements(gameDTO.no_achivements());
         Game updatedGame = gameRepo.save(game);
         return convertToDTO(updatedGame);
@@ -63,7 +63,7 @@ public class GameServiceImpl implements GameService{
         Game game = new Game();
         game.setName(gameDTO.name());
         game.setDatePublished(gameDTO.date_published());
-        game.setCopiesSold(gameDTO.copies_Sold());
+        game.setCopiesSold(gameDTO.copies_sold());
         game.setAchivements(gameDTO.no_achivements());
         return game;
     } 

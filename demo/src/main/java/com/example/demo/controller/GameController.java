@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.GameDTO;
+import com.example.demo.model.User;
 import com.example.demo.service.GameService;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,13 +34,35 @@ public class GameController{
 
     @PostMapping
     public GameDTO createGame(@RequestBody GameDTO gameDTO){
-        return gameService.saveGame(gameDTO);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = (User) authentication.getPrincipal();
+
+        GameDTO newGameDTO = new GameDTO(
+            null,
+            gameDTO.name(),
+            gameDTO.date_published(), 
+            gameDTO.copies_sold(), 
+            gameDTO.no_achivements(), 
+            currentUser);
+
+        return gameService.saveGame(newGameDTO);
     }
 
     @PutMapping("/{Id}")
     public ResponseEntity<GameDTO> updateGame(@PathVariable Long Id, @RequestBody GameDTO gameDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = (User) authentication.getPrincipal();
+
+        GameDTO newGameDTO = new GameDTO(
+            null,
+            gameDTO.name(),
+            gameDTO.date_published(), 
+            gameDTO.copies_sold(), 
+            gameDTO.no_achivements(), 
+            currentUser);
+
         try{
-            GameDTO updatedGame = gameService.updaGame(Id, gameDTO);
+            GameDTO updatedGame = gameService.updaGame(Id, newGameDTO);
             return ResponseEntity.ok(updatedGame);
         } catch (Exception e){
             return ResponseEntity.notFound().build();

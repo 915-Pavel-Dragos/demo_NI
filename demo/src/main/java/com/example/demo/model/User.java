@@ -7,6 +7,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +39,10 @@ public class User implements UserDetails{
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Game> games = new ArrayList<>();
+
     // Getters 
 
     public Integer getId() { return this.id; }
@@ -44,6 +51,7 @@ public class User implements UserDetails{
     public String getPassword() { return this.password; }
     public Date getCreatedAt() { return this.createdAt; }
     public Date getUpdatedAt() { return this.updatedAt; }
+    public List<Game> getGames() { return this.games; }
 
     // Setters
     public User setId(Integer new_id) { this.id = new_id; return this; }
@@ -52,7 +60,7 @@ public class User implements UserDetails{
     public User setPassword(String new_pass) { this.password = new_pass; return this; }
     public User setCreatedAt(Date new_createdAt) { this.createdAt = new_createdAt; return this; }
     public User setUpdatedAt(Date new_updatedAt) { this.updatedAt = new_updatedAt; return this; }
-
+    public User setGames(List<Game> new_games) { this.games = new_games; return this; }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -75,4 +83,11 @@ public class User implements UserDetails{
 
     @Override
     public boolean isEnabled() { return true; }
+
+    @Override
+    public String toString() {
+        return "User: id - " + this.id + 
+                ", fullName: " + this.fullName + 
+                ", email: " + this.email;
+    }
 }

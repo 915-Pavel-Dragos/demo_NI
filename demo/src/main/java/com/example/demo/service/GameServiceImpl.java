@@ -44,6 +44,7 @@ public class GameServiceImpl implements GameService{
         game.setDatePublished(gameDTO.date_published());
         game.setCopiesSold(gameDTO.copies_sold());
         game.setAchivements(gameDTO.no_achivements());
+        game.setUser(gameDTO.user());
         Game updatedGame = gameRepo.save(game);
         return convertToDTO(updatedGame);
     }
@@ -55,7 +56,7 @@ public class GameServiceImpl implements GameService{
 
     // Convert GameDTO to Game Entity
     private GameDTO convertToDTO(Game game){
-        return new GameDTO(game.GetId(), game.GetName(), game.GetDatePublished(), game.GetCopiesSold(), game.GetAchivements());
+        return new GameDTO(game.getId(), game.getName(), game.getDatePublished(), game.getCopiesSold(), game.getAchivements(), game.getUser());
     }
 
     // Convert GameDTO to Game Entity 
@@ -65,6 +66,7 @@ public class GameServiceImpl implements GameService{
         game.setDatePublished(gameDTO.date_published());
         game.setCopiesSold(gameDTO.copies_sold());
         game.setAchivements(gameDTO.no_achivements());
+        game.setUser(gameDTO.user());
         return game;
     } 
 }

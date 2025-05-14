@@ -38,6 +38,7 @@ public class GameController{
         User currentUser = (User) authentication.getPrincipal();
 
         GameDTO newGameDTO = new GameDTO(
+            gameDTO.id(),
             gameDTO.name(),
             gameDTO.date_published(), 
             gameDTO.copies_sold(), 
@@ -53,6 +54,7 @@ public class GameController{
         User currentUser = (User) authentication.getPrincipal();
 
         GameDTO newGameDTO = new GameDTO(
+            gameDTO.id(),
             gameDTO.name(),
             gameDTO.date_published(), 
             gameDTO.copies_sold(), 

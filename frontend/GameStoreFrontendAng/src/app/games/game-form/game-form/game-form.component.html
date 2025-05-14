@@ -1,0 +1,10 @@
+<div class="game-form">
+    <h2>{{ isEditMode ? 'Edit Game' : 'Add Game' }}</h2>
+    <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+        <input formControlName="name" placeholder="Game Name" />
+        <input type="date" formControlName="date_published" />
+        <input type="number" formControlName="copies_sold" placeholder="Copies Sold"/>
+        <input type="number" formControlName="no_achivements" placeholder="Achivements"/>
+        <button type="submit">Save</button>
+    </form>
+</div>

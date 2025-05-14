@@ -9,6 +9,7 @@ A simple CRUD-based web application where users can explore and play video games
 ## Technologies
 
 - **Backend:** Spring Boot `3.4.5`
+- **Frontend:** Angular `19.2.1`
 - **Database:** PostgreSQL (H2 for testing)
 - **Authentication:** JSON Web Tokens (JWT)
 - **Java Version:** `24`
@@ -36,6 +37,11 @@ A simple CRUD-based web application where users can explore and play video games
 - `postgresql` (Runtime)
 - `h2` (Test scope)
 
+### Angular
+
+- `typescript` `5.7.2`
+- `express` `4.18.2`
+
 ### Other
 
 - `jakarta.persistence-api`
@@ -46,13 +52,15 @@ A simple CRUD-based web application where users can explore and play video games
 
 ### On macOS/Linux
 
-./mvnw spring-boot:run 
+- ./mvnw spring-boot:run (for BackEnd)
+- ng serve (for FrontEnd)
 
 ---
 
 ### On Windows
 
-- mvnw.cmd spring-boot:run
+- mvnw.cmd spring-boot:run (for BackEnd)
+- ng serve (for FrontEnd)
 
 ---
 
@@ -60,7 +68,7 @@ A simple CRUD-based web application where users can explore and play video games
 
 ### On macOS/Linux
 
-./mvnw test
+- ./mvnw test
 
 ---
 

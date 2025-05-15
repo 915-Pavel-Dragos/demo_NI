@@ -1,5 +1,3 @@
-# demo_NI
-
 # Game Store App
 
 A simple CRUD-based web application where users can explore and play video games. Built with **Java Spring Boot**.
